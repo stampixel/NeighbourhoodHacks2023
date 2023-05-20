@@ -1,0 +1,245 @@
+
+{% extends "base.html" %} {% block head %} <title>BizLink</title> {% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li{
+            list-style: none;
+        }
+        .nav{
+            display: flex;
+            padding: 2rem 5rem;
+            color: black;
+            width: 100vw;
+        }
+        .nav ul{
+            display: flex;
+            align-items: center;
+        }
+        .nav ul li:not(:last-child){
+            margin-right: 2rem;
+        }
+        html{
+            background: linear-gradient(180deg, #DED9EB 0%, #7A60B9 143.69%);
+        }
+        main{
+            padding: 2rem 2rem;
+        }
+        .main-header{
+            display: grid;
+            align-items: center;
+        }
+        .main-header img{
+            border-radius: 3rem;
+            height: calc(100% -2rem);
+            padding: 2rem;
+        }
+        .btn-group{
+            display: grid;
+            max-width: 20em;
+            margin: 0 auto;
+        }
+        .btn{
+            background-color: #7153C6;
+            color: white;
+            border-radius: 10rem;
+            padding: 1rem 2.2rem;
+            border: none;
+        }
+        form{
+            padding: 2rem 2rem;
+            background-color:#242439 ;
+            border-radius: 4rem;
+            color: white;
+            text-align: center;
+
+        }
+        .input-classes{
+            margin-bottom: 2rem;
+            display: grid;
+            max-width: 20rem;
+            text-align: left;
+            margin: 0 auto;
+        }
+        footer{
+            display: flex;
+            justify-content: space-between;
+            padding: 2rem;
+            color: #DED9EB;
+        }
+        .footer-links{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        @media screen and (min-width: 700px) {
+            .main-header{
+            max-width: 80rem;
+        }
+        .btn-group{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        form{
+            padding: 3rem 2rem;
+        }
+        }
+        @media screen and (min-width:1000px) {
+            main{
+            padding: 2rem 7rem;
+        }
+        .main-header{
+            display: flex;
+        }
+        form{
+            width: 40vw;
+        }
+        footer{
+            padding: 2rem 7rem;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <h2>BizLink</h2>
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Mobile Support</li>
+            <li>Our mission</li>
+            <li>Contact Us</li>
+        </ul>
+    </div>
+    <main>
+        <section>
+            <div class="main-header">
+                <div>
+                    <h1><span style="color:#7153C6;">BizLink</span>, The Business Directory for the Digital Age</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit distinctio quos iste nemo. Dolorum obcaecati aperiam, doloremque at doloribus suscipit consequuntur tenetur iste impedit veniam? Repellendus dolorum similique exercitationem ad!</p>
+                    <div class="btn-group">
+                        <button class="btn">Login</button>
+                        <button class="btn" >register</button>
+                    </div>
+                </div>
+                <img src="https://media.istockphoto.com/id/1365105724/photo/multicultural-businesspeople-working-in-an-office-lobby.jpg?s=612x612&w=0&k=20&c=sMX6XxPrtehRp04QhIvhLuG3M8sp4rbuWy47LhvUJhY=" alt="people in business">
+            </div>
+            <div class="main-header">
+                <div>
+                    <h1>Find Businesses Near You <span>BizLink</span></h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit distinctio quos iste nemo. Dolorum obcaecati aperiam, doloremque at doloribus suscipit consequuntur tenetur iste impedit veniam? Repellendus dolorum similique exercitationem ad!</p>
+                    <div class="btn-group">
+                        <button class="btn">Try it out</button>
+                    </div>
+                </div>
+                <img src="https://media.istockphoto.com/id/1365105724/photo/multicultural-businesspeople-working-in-an-office-lobby.jpg?s=612x612&w=0&k=20&c=sMX6XxPrtehRp04QhIvhLuG3M8sp4rbuWy47LhvUJhY=" alt="people in business">
+            </div>
+            <div class="main-header">
+                <img src="https://media.istockphoto.com/id/1365105724/photo/multicultural-businesspeople-working-in-an-office-lobby.jpg?s=612x612&w=0&k=20&c=sMX6XxPrtehRp04QhIvhLuG3M8sp4rbuWy47LhvUJhY=" alt="people in business">
+                <div>
+                    <h1>Create Your Own Business Listing <span>BizLink</span></h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit distinctio quos iste nemo. Dolorum obcaecati aperiam, doloremque at doloribus suscipit consequuntur tenetur iste impedit veniam? Repellendus dolorum similique exercitationem ad!</p>
+                    
+                </div>
+            </div>
+            <div class="main-header">
+                
+                <div>
+                    <h1>Create your own custom link<span>BizLink</span></h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit distinctio quos iste nemo. Dolorum obcaecati aperiam, doloremque at doloribus suscipit consequuntur tenetur iste impedit veniam? Repellendus dolorum similique exercitationem ad!</p>
+                    
+                </div>
+                <img src="https://media.istockphoto.com/id/1365105724/photo/multicultural-businesspeople-working-in-an-office-lobby.jpg?s=612x612&w=0&k=20&c=sMX6XxPrtehRp04QhIvhLuG3M8sp4rbuWy47LhvUJhY=" alt="people in business">
+            </div>
+            <div class="main-header">
+                <img src="https://media.istockphoto.com/id/1365105724/photo/multicultural-businesspeople-working-in-an-office-lobby.jpg?s=612x612&w=0&k=20&c=sMX6XxPrtehRp04QhIvhLuG3M8sp4rbuWy47LhvUJhY=" alt="people in business">
+                <div>
+                    <h1>Discover New Businesses and Services<span>BizLink</span></h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit distinctio quos iste nemo. Dolorum obcaecati aperiam, doloremque at doloribus suscipit consequuntur tenetur iste impedit veniam? Repellendus dolorum similique exercitationem ad!</p>
+                    
+                </div>
+            </div>
+            <div class="main-header">
+                
+                <div>
+                    <h1>See what others are saying<span>BizLink</span></h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit distinctio quos iste nemo. Dolorum obcaecati aperiam, doloremque at doloribus suscipit consequuntur tenetur iste impedit veniam? Repellendus dolorum similique exercitationem ad!</p>
+                    
+                </div>
+                <img src="https://media.istockphoto.com/id/1365105724/photo/multicultural-businesspeople-working-in-an-office-lobby.jpg?s=612x612&w=0&k=20&c=sMX6XxPrtehRp04QhIvhLuG3M8sp4rbuWy47LhvUJhY=" alt="people in business">
+            </div>
+            <div class="main-header">
+                <div>
+                    <h1>Have questions?Let us know. We're always here to help and listen</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit distinctio quos iste nemo.</p>
+
+                    <p>Email address</p>
+                    <p>bizlink@info.org</p>
+
+                    <p>Phone number</p>
+                    <p>+(725)210-7264</p>
+
+                    <p>
+                        Address
+                    </p>
+                    <p>2739 Maryland, Las vegas</p>
+                    
+                </div>
+                <div>
+                    <form action="#" class="form">
+                        <h2>Contact Us</h2>
+                        <div class="input-classes">
+                            <label for="name">Name</label>
+                            <input type="text" id="name">
+                        </div>
+                        <div class="input-classes">
+                            <label for="Email">Email</label>
+                            <input type="text" id="Email">
+                        </div>
+                        <div class="input-classes">
+                            <label for="subject">subject</label>
+                            <input type="text" id="subject">
+                        </div>
+                        <div class="input-classes">
+                            <label for="message">message</label>
+                            <input type="text" id="message">
+                        </div>
+                        
+                        <button class="btn">send</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <h1 style="color:#7153C6;">BizLink</h1>
+        <div class="footer-links">
+            <ul>
+                <li>About</li>
+                <li>Home</li>
+                <li>About Us</li>
+            </ul>
+            <ul>
+                <li>Information</li>
+                <li>Contacts</li>
+                <li>Our team</li>
+            </ul>
+            <ul>
+                <li>Service</li>
+                <li>Pages</li>
+                <li>Elements</li>
+                <li>Site map</li>
+                <li>Pricing</li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
+
+{% endblock %}
