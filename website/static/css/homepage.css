@@ -5,11 +5,27 @@ li{
     display: flex;
     padding: 2rem 5rem;
     color: black;
-    width: 100vw;
+    width: calc(100vw- 10rem);
+    justify-content: space-between;
+}
+.nav h2{
+    color: #7153C6;
+    font-weight: 700;
+    font-size: 2.2rem;
 }
 .nav ul{
     display: flex;
     align-items: center;
+}
+.nav a{
+    text-decoration: none;
+    color: #242439;
+    transform: scale(.1);
+    transition: all .3s;
+}
+.nav a:hover{
+    color: #7A60B9;
+    font-size: 1.2rem;
 }
 .nav ul li:not(:last-child){
     margin-right: 2rem;
@@ -19,15 +35,32 @@ html{
 }
 main{
     padding: 2rem 2rem;
+    margin: 0 auto;
 }
 .main-header{
     display: grid;
     align-items: center;
+    margin: 0 auto;
+}
+.main-header h1{
+    font-weight: 700;
+    font-size: 2rem;
+    color: white;
+}
+.main-header-div{
+    max-width: 30rem;
+    margin: 0 auto;
+}
+.main-header p{
+    color:#454A59 ;
+    font-size: 1rem;
+    font-weight: 100;
 }
 .main-header img{
     border-radius: 3rem;
-    height: calc(100% -2rem);
+    height: calc(70%);
     padding: 2rem;
+    object-fit: cover;
 }
 .btn-group{
     display: grid;
@@ -69,6 +102,10 @@ footer{
 @media screen and (min-width: 700px) {
     .main-header{
     max-width: 80rem;
+    margin: 0 auto;
+}
+.main-header img{
+    width: 70%;
 }
 .btn-group{
     display: flex;
@@ -80,12 +117,19 @@ form{
 }
 }
 @media screen and (min-width:1000px) {
+    .nav{
+        padding: 2rem 10rem 0 10rem;
+        width: calc(100vw - 20rem);
+    }
     main{
-    padding: 2rem 7rem;
+    padding: 0rem 7rem;
+
 }
 .main-header{
     display: flex;
+
 }
+
 form{
     width: 40vw;
 }
