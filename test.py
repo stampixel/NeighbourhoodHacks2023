@@ -1,23 +1,11 @@
-@app.route("/signup", methods=['POST', 'GET'])
-def signup():
-    print('Request for signup received')
-    if "username" in session:
-        return redirect(url_for("home"))
-    if request.method == "POST":
-        username = request.form.get("username")
+from dotenv import load_dotenv
+import os
+import googlemaps
+from datetime import datetime
+load_dotenv()
 
-        password = request.form.get("password")
+gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API_KEY'))
 
-        user_found = users.find_one({"username": username})
-        if user_found:
-            return render_template('error.html', message='Username already exists.')
-        else:
-            hashed = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-            user_input = {'username': username, 'password': hashed, 'profile_picture': '', 'bio': '', 'posts': []}
-            users.insert_one(user_input)
-
-            user_data = users.find_one({"username": username})
-            new_username = user_data['username']
-
-            return redirect(url_for("about"))
-    return render_template('signup.html')
+# Geocoding an address
+geocode_result = gmaps.geocode('1600 Amphitheatre Parkway, Mountain View, CA')
+print(geocode_result)
