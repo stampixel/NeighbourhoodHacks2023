@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block head %} <title>Login</title> {% endblock %}
+{% block content %}
+<div class="container" style="max-width: 40%; align-items: center; background-color: #fefeff; border-radius: 8px; padding: 10px;">
+    <form method="POST">
+        <img src="../static/img/user-g29e70eb6b_1920.png" alt="" height="150px" id="loginImage" style="display: block;
+        margin-left: auto;
+        margin-right: auto;">
+        <h3 align="center">Sign up</h3>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+        </div>
+        <div class="form-group">
+            <label for="name">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+        </div>
+        <br>
+        <p style="text-align: center;">Already an existing user? <a href="http://" type="link">login</a> here</p>
+        <div class="submitBtn"><button type="submit" class="btn btn-primary">Login</button></div>
+    </form>
+</div>
+{% endblock %}
