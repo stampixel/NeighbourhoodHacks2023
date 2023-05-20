@@ -1,0 +1,67 @@
+<section>
+    <div class="editor">
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          padding-left: 10%;
+          justify-content: space-between;
+          background-color: brown;
+        "
+      >
+        <img
+          class="profile-pic"
+          src="../static/img/user-g29e70eb6b_1920.png"
+          alt="Profile Picture"
+        />
+        <div style="padding: 20px; margin-right: 30%">
+          <h1 style="font-size: 5pc"><strong>Hi User</strong></h1>
+        </div>
+      </div>
+      <br />
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          /* justify-content: space-evenly; */
+        "
+      >
+        <div
+          class="left-panel"
+          style="
+            justify-content: safe;
+            display: flex;
+            flex: auto;
+            justify-content: space-evenly;
+          "
+        >
+          <div class="upload-btn-wrapper">
+            <button class="btn">Upload Photo</button>
+            <input type="file" name="myPhotofile" />
+          </div>
+          <div class="upload-btn-wrapper">
+            <button class="btn">Upload Banner</button>
+            <input type="file" name="myBannerfile" />
+          </div>
+        </div>
+        <div class="right-panel" style="margin-right: 30px;">
+          <div
+            style="
+            width: 500px;
+               justify-content: space-evenly;
+               display: flex;
+              ">
+            <textarea name="address" id="address" cols="10" rows="3">Enter Address </textarea>
+            <div style="margin-top: auto; margin-bottom: auto; margin-left: 20px">
+              <button class="btn" onclick="openGoogleMaps()">Locate</button>
+            </div>
+          </div>
+          <br>
+          <div>
+            <p>Want to know what's new arrived??</p>
+            <p>subscribe to our newsletter <a href="http://">here</a> </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
