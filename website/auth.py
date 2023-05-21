@@ -81,7 +81,8 @@ def register():
                           'bio': '',
                           'posts': [],
                           'timestamp': datetime.utcnow(),
-                          'address': ''
+                          'address': '',
+                          'link_url': ''
                           }
             users.insert_one(user_input)
             return redirect(url_for('views.about'))

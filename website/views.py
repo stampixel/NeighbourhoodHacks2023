@@ -99,9 +99,15 @@ def editor():
         try:
             if request.form['save-address'] == "Save Address":
                 address = request.form['address']
-                print(address)
                 users.find_one_and_update({'username': session['username']},
                                           {'$set': {'address': address}})
+        except:
+            pass
+        try:
+            if request.form['save-link'] == "Save Link":
+                link = request.form['link']
+                users.find_one_and_update({'username': session['username']},
+                                          {'$set': {'link_url': link}})
         except:
             pass
 
