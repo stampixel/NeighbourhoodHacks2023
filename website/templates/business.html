@@ -23,9 +23,8 @@
     <div class="main">
         <div class="left">
 
-            {% for post in posts %}
+            {% for post in user['posts'] %}
                 <div class="post">
-                    <a href="/delete/post/{{ post['_id'] }}">Delete</a>
                     <img src="{{ post['image'] }}" alt="Post Image">
                     <p>{{ post['description'] }}</p>
                 </div>
@@ -35,7 +34,7 @@
         <div class="right">
             <div class="address">
                 <span><a href="/map">View Map</a></span>
-            </div>
+            </div>`
 
             <div class="socials">
                 <p>Social Handles</p>
