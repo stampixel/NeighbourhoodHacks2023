@@ -2,27 +2,38 @@
 {% block title %}about{% endblock %}
 
 {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/about.css">
+</head>
+<body>
+    <main>
+        <section>
+            <div class="overlay">
+                <h1>Welcome to BizLink</h1>
+                <div class="about-column">
+                    <div class="about-content">
+                        <p>Advertise Your Business</p>
+                        <h5>We help you grow and earn more</h5>
+                        <h5>Interested to join our community</h5>
+                    </div>
+                    <div>
+                        <button>
+                            <a class="login" href="{{url_for('auth.login')}}">
+                                I'm Ready!
+                            </a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
 
-
-<div class="aboutText">
-    <p>
-        Wildtrek is dedicated to encourage outdoor exploration.
-    </p>
-    <p>
-        While going outside, you can discover new plants and save them as you do!
-    </p>
-    <p>
-        Users 13 and above, can see other’s discoveries and add some friends too.
-    </p>
-    <img class="logo aboutLogo" src="https://wildtrekimages.theohal.repl.co/images/Wildtrek.png">
-    <p>
-        Ready to start your adventure?
-    </p>
-</div>
-<div>
-        <a class="login" href="{{url_for('auth.login')}}">
-        I'm Ready!
-    </a>
-</div>
 
 {% endblock %}

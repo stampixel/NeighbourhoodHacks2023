@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('../img/skyscrapers-from-low-angle-view.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    color: white;
+  }
+
+  h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 24px;
+  }
+
+  .about-column {
+    display: flex;
+    justify-content:space-evenly;
+  }
+
+  button {
+    margin-top: 40%;
+    background-color: #7153C6;
+    color: white;
+    border-radius: 10rem;
+    padding: 1rem 2.2rem;
+    border: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
