@@ -42,10 +42,8 @@ def login():
 # Logging out the user
 @auth.route('/logout')
 def logout():
-    if "username" in session:
-        session.pop('username', None)
-        return redirect(url_for("views.index"))
-    return redirect(url_for('views.index'))
+    session.clear()
+    return redirect(url_for("views.index"))
 
 
 # Registering the user
@@ -63,7 +61,8 @@ def register():
         password2 = request.form['password2']
 
         user = users.find_one({"email": email})
-        if user:
+        user2 = users.find_one({"username": username})
+        if user or user2:
             flash("Email already exists!", category='error')
         elif password1 != password2:
             flash("Passwords must match!", category='error')
@@ -72,8 +71,8 @@ def register():
         elif len(username) < 2:
             flash("Business name to short!", category='error')
         else:
-            print(email)
             user_input = {'username': username,
+                          'business_name': "untitled",
                           'email': email,
                           'password': generate_password_hash(password1, method='sha256'),
                           'profile_picture': '',
@@ -82,7 +81,7 @@ def register():
                           'posts': [],
                           'timestamp': datetime.utcnow(),
                           'address': '',
-                          'link_url': ''
+                          'link_tree': []
                           }
             users.insert_one(user_input)
             return redirect(url_for('views.about'))

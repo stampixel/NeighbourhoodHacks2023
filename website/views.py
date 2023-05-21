@@ -57,6 +57,10 @@ def get_posts():
     return list(users.find({}).sort('timestamp', pymongo.DESCENDING))
 
 
+def get_user_posts():
+    return list(posts.find({'username': session['username']}).sort('timestamp', pymongo.DESCENDING))
+
+
 def get_coords(address: str):
     geocode_result = gmaps.geocode(address)
     return [geocode_result[0]['geometry']['location']['lat'], geocode_result[0]['geometry']['location']['lng']]
@@ -69,33 +73,42 @@ def editor():
         return redirect(url_for("views.index"))
     if request.method == "POST":
         try:
-            if request.form['save-pfp'] == "Save Profile Picture":
+            if request.form['save-content'] == "Save Content":
                 try:
                     image = request.files['pfp']
-                    image.filename = 'pfp'
-                    upload_file_to_s3(image, app.config["S3_BUCKET"])
-                    file_location = 'http://' + os.getenv('S3_BUCKET_NAME') + '.s3.amazonaws.com/' + session[
-                        "username"] + "/pfp"
-                    users.find_one_and_update({'username': session['username']},
-                                              {'$set': {'profile_picture': file_location}})
+                    if image.filename != "":
+                        image.filename = 'pfp'
+                        upload_file_to_s3(image, app.config["S3_BUCKET"])
+                        file_location = 'http://' + os.getenv('S3_BUCKET_NAME') + '.s3.amazonaws.com/' + session[
+                            "username"] + "/pfp"
+                        users.find_one_and_update({'username': session['username']},
+                                                  {'$set': {'profile_picture': file_location}})
                 except Exception as e:
                     flash("An error has occurred, please try again later.", "error")
-        except:
-            pass
-        try:
-            if request.form['save-banner'] == "Save Banner":
+
                 try:
                     image = request.files['banner']
-                    image.filename = 'banner'
-                    upload_file_to_s3(image, app.config["S3_BUCKET"])
-                    file_location = 'http://' + os.getenv('S3_BUCKET_NAME') + '.s3.amazonaws.com/' + session[
-                        "username"] + "/banner"
-                    users.find_one_and_update({'username': session['username']},
-                                              {'$set': {'banner': file_location}})
+                    if image.filename != "":
+                        image.filename = 'banner'
+                        upload_file_to_s3(image, app.config["S3_BUCKET"])
+                        file_location = 'http://' + os.getenv('S3_BUCKET_NAME') + '.s3.amazonaws.com/' + session[
+                            "username"] + "/banner"
+                        users.find_one_and_update({'username': session['username']},
+                                                  {'$set': {'banner': file_location}})
                 except Exception as e:
                     flash("An error has occurred, please try again later.", "error")
+
+                try:
+                    if request.form.get('name') != "":
+                        username = request.form['name']
+                        users.find_one_and_update({'username': session['username']},
+                                                  {'$set': {'business_name': username}})
+                        print("asdsd")
+                except:
+                    pass
         except:
             pass
+
         try:
             if request.form['save-address'] == "Save Address":
                 address = request.form['address']
@@ -103,46 +116,57 @@ def editor():
                                           {'$set': {'address': address}})
         except:
             pass
+
         try:
-            if request.form['save-link'] == "Save Link":
-                link = request.form['link']
+            if request.form['save-link'] == "Add Link":
+                url = request.form['url']
+                title = request.form['title']
                 users.find_one_and_update({'username': session['username']},
-                                          {'$set': {'link_url': link}})
+                                          {'$push': {'link_tree': [url, title]}})
         except:
             pass
+        # try:
+        #     if request.form['save-link'] == "Save Link":
+        #         link = request.form['link']
+        #         users.find_one_and_update({'username': session['username']},
+        #                                   {'$set': {'link_url': link}})
+        # except:
+        #     pass
 
         try:
             if request.form['post-image'] == "Post Image":
                 print("sdfasdf")
-            image = request.files['pfp']
-            image.seek(0)
+                image = request.files['post']
+                image.seek(0)
 
-            # Generating image ID
-            image_id = uuid.uuid4().hex
-            image.filename = image_id
+                # Generating image ID
+                image_id = uuid.uuid4().hex
+                image.filename = image_id
 
-            upload_file_to_s3(image, app.config["S3_BUCKET"])
-            file_location = 'http://' + os.getenv('S3_BUCKET_NAME') + '.s3.amazonaws.com/' + session[
-                "username"] + "/" + image.filename
+                upload_file_to_s3(image, app.config["S3_BUCKET"])
+                file_location = 'http://' + os.getenv('S3_BUCKET_NAME') + '.s3.amazonaws.com/' + session[
+                    "username"] + "/" + image.filename
 
-            caption = request.form.get("caption")
+                description = request.form.get("description")
 
-            post_input = {'_id': image_id,
-                          'timestamp': datetime.utcnow(),
-                          'username': session['username'],
-                          'image': file_location,
-                          'caption': caption,
-                          'likes': 0,
-                          'liked_users': [],
-                          'comments': []
-                          }
-            posts.insert_one(post_input)
-            users.find_one_and_update({'username': session['username']}, {'$push': {'posts': post_input}})
+                post_input = {'_id': image_id,
+                              'timestamp': datetime.utcnow(),
+                              'username': session['username'],
+                              'image': file_location,
+                              'description': description,
+                              'likes': 0,
+                              'liked_users': [],
+                              'comments': []
+                              }
+                posts.insert_one(post_input)
+                users.find_one_and_update({'username': session['username']}, {'$push': {'posts': post_input}})
         except:
             pass
 
-    user = users.find({'username': session['username']})
-    return render_template("editor.html", user=user)
+    user = users.find_one({'username': session['username']})
+    post_contents = get_user_posts()
+    print(post_contents)
+    return render_template("editor.html", user=user, posts=post_contents)
 
 
 @views.route('/map', methods=['GET', 'POST'])
@@ -154,8 +178,6 @@ def map():
     markers = ''
     for node in map_posts:
 
-        if node['banner'] == "":
-            continue
         marker_id = "post_" + str(node["_id"])
 
         # Check if shops have name and website in OSM
@@ -166,9 +188,9 @@ def map():
             image = 'null'
 
         try:
-            bio = node["bio"]
+            name = node["business_name"]
         except:
-            bio = 'null'
+            name = 'null'
 
         try:
             print(node['address'])
@@ -177,16 +199,20 @@ def map():
             lat = coords[0] + (random.random() - .5) * .001
             lon = coords[1] + (random.random() - .5) * .001
         except:
-            print("no lat")
-            lat = 47.7606092 + (random.random() - .5) * .00001
-            lon = -122.188031 + (random.random() - .5) * .00001
+            continue
 
-        # Create the marker and its pop-up for each shop
+            # print("no lat")
+            # lat = 47.7606092 + (random.random() - .5) * .00001
+            # lon = -122.188031 + (random.random() - .5) * .00001
+
+        # Create the marker and its pop-up
         markers += f"var {marker_id} = L.marker([{lat}, {lon}]);\
-                    {marker_id}.addTo(map).bindPopup(\'<a class=\"mapPost\" href=\"/onePost?id={marker_id}\"><img src=\"{image}\"><div class=\"mapPostCaption\">{bio}</div></a>\'); "
+                    {marker_id}.addTo(map).bindPopup(\'<a class=\"mapPost\" href=\"/{node['username']}\"><img src=\"{image}\"><div class=\"mapPostCaption\">{name}</div></a>\'); "
 
     # Render the page with the map
-    return render_template('map.html', markers=markers, lat=47.654170, lon=-122.302610)
+    if "username" in session:
+        return render_template('map.html', markers=markers, user=True)
+    return render_template('map.html', markers=markers)
 
 
 @views.route('/about', methods=['GET', 'POST'])
@@ -194,3 +220,29 @@ def about():
     if 'username' not in session:
         return render_template("about.html", user=False)
     return url_for("views.editor")
+
+
+@views.route('/delete/<int:index>')
+def delete_link(index):
+    user = users.find_one({'username': session['username']})
+    links = user['link_tree']
+    links.pop(index - 1)
+
+    users.find_one_and_update({'username': session['username']},
+                              {'$set': {'link_tree': links}})
+    return redirect(url_for('views.editor'))
+
+
+@views.route('/delete/post/<id>')
+def delete_post(id):
+    if "username" in session:
+        posts.delete_one({'_id': id})
+        return redirect(url_for('views.editor'))
+    return redirect(url_for('views.index'))
+
+
+@views.route('/<username>')
+def business(username):
+    user = users.find_one({"username": username})
+
+    return render_template("business.html", user=user)

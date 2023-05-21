@@ -6,9 +6,9 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     font-family: Arial, sans-serif;
-  }
+}
 
-  .overlay {
+.overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -20,32 +20,32 @@ body {
     justify-content: center;
     text-align: center;
     color: white;
-  }
+}
 
-  h1 {
+h1 {
     font-size: 48px;
     margin-bottom: 20px;
-  }
+}
 
-  p {
+p {
     font-size: 24px;
-  }
+}
 
-  .about-column {
+.about-column {
     display: flex;
-    justify-content:space-evenly;
-  }
+    justify-content: space-evenly;
+}
 
-  button {
+button {
     margin-top: 40%;
     background-color: #7153C6;
     color: white;
     border-radius: 10rem;
     padding: 1rem 2.2rem;
     border: none;
-  }
+}
 
-  a {
+a {
     text-decoration: none;
     color: white;
-  }
+}

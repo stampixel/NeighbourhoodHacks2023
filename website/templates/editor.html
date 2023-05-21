@@ -1,93 +1,110 @@
 {% extends "base.html" %}
 
-
 {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editor</title>
+    <link rel="stylesheet" href="../static/css/editor.css"/>
 {% endblock %}
 
 
 {% block content %}
-    <section>
-        <div class="editor">
-            <div style="
-          display: flex;
-          flex-direction: row;
-          padding-left: 10%;
-          justify-content: space-between;
-          background-color: brown;
-        ">
-                <img
-                        class="profile-pic"
-                        src="../static/img/user-g29e70eb6b_1920.png"
-                        alt="Profile Picture"
-                />
-                <div style="padding: 20px; margin-right: 30%">
-                    <h1 style="font-size: 5pc"><strong>Hi User</strong></h1>
-                </div>
-            </div>
-            <br/>
-            <div style="
-          display: flex;
-          flex-direction: row;
-        "
-            >
-                <div
-                        class="left-panel"
-                        style="
-            justify-content: safe;
-            display: flex;
-            flex: auto;
-            justify-content: space-evenly;
-          ">
+    <div class="banner"
+         style="background-image: url('{{ user["banner"] }}');">
 
-                    <form method="POST" action="" enctype="multipart/form-data">
-                        <div class="upload-btn-wrapper">
-                            <input class="btn" type="submit" name="save-pfp" value="Save Profile Picture">
-                            <input required type="file" id="pfp" name="pfp" accept="image/*" value="save-pfp">
-                        </div>
-                    </form>
-
-                    <form method="POST" action="" enctype="multipart/form-data">
-                        <div class="upload-btn-wrapper">
-                            <input class="btn" type="submit" name="save-banner" value="Save Banner">
-                            <input required type="file" id="banner" name="banner" accept="image/*" value="save-banner">
-                        </div>
-                    </form>
-
-                    <div class="right-panel" style="margin-right: 30px;">
-                        <form method='POST'>
-                            <div
-                                    style="
-            width: 500px;
-               justify-content: space-evenly;
-               display: flex;">
-                                <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input
-                                            type="text"
-                                            class="form-control"
-                                            id="address"
-                                            name="address"
-                                            placeholder="Enter address to be displayed on map"
-                                    />
-                                </div>
-
-
-                                <div style="margin-top: auto; margin-bottom: auto; margin-left: 20px">
-                                    <input type="submit" name="save-address" value="Save Address">
-                                </div>
-                            </div>
-                        </form>
-
-                        <br>
-                        <div>
-                            <p>Want to know what's new arrived??</p>
-                            <p>subscribe to our newsletter <a href="http://">here</a></p>
-                        </div>
+    </div>
+    <!--
+    <div class="banner">
+        <img src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80"
+             alt="Banner">
+    </div>
+    -->
+    <div class="profile">
+        <div class="profile-picture">
+            <!-- Profile picture goes here -->
+            <img src="{{ user['profile_picture'] }}"
+                 alt="Avatar">
+        </div>
+        <div class="name"><a href="/{{ user['username'] }}">{{ user['business_name'] }}</a></div>
+    </div>
+    <div class="main">
+        <div class="left">
+            <div class="uploads">
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <div class="upload-btn-wrapper">
+                    <span>Upload Profile <input type="file" id="pfp" name="pfp" accept="image/*"
+                                                value="save-pfp"></span>
                     </div>
+                    <div class="upload-btn-wrapper">
+                    <span>Upload Banner <input type="file" id="banner" name="banner" accept="image/*"
+                                               value="save-banner"></span>
+                    </div>
+                    <div class="upload-btn-wrapper">
+                        <label for="name">Change Name</label>
+                        <input type="text" class="form-control" id="name" name="name"
+                               placeholder="Change business name">
+                    </div>
+
+                    <button type="submit" name="save-content" value="Save Content">Save</button>
+                </form>
+            </div>
+
+            <div class="post">
+                <form method="POST" action="" enctype="multipart/form-data">
+                    <div class="upload-btn-wrapper">
+                    <span>Browse photo to post <input type="file" id="post" name="post" accept="image/*"
+                                                      value="post-item"></span>
+                    </div>
+                    <label for="description"></label>
+                    <input type="text" id="description" name="description" placeholder="Description">
+                    <button type="submit" name="post-image" value="Post Image">Post</button>
+                </form>
+            </div>
+
+            <!-- Add your three most recent posts here -->
+
+            {% for post in posts %}
+                <div class="post">
+                    <a href="/delete/post/{{ post['_id'] }}">Delete</a>
+                    <img src="{{ post['image'] }}" alt="Post Image">
+                    <p>{{ post['description'] }}</p>
                 </div>
+            {% endfor %}
+        </div>
+
+        <div class="right">
+            <form method='POST'>
+                <div class="address">
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" name="address"
+                               placeholder="Enter address to be displayed on map"/>
+                    </div>
+                    <span><input type="submit" name="save-address" value="Save Address"> <a
+                            href="/map">View Map</a></span>
+                </div>
+            </form>
+
+            <div class="socials">
+                <p>Social Handles</p>
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="url">URL</label>
+                        <input type="text" class="form-control" id="url" name="url" placeholder="Enter URL" required/>
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Enter title"
+                               required/>
+                        <input type="submit" name="save-link" value="Add Link">
+                    </div>
+                </form>
+
+                {% for link in user['link_tree'] %}
+                    <a href="/delete/{{ loop.index }}">X</a> <p><a href="{{ link[0] }}">{{ link[1] }}</a></p>
+
+                {% endfor %}
+
             </div>
         </div>
-    </section>
+    </div>
 
 {% endblock %}

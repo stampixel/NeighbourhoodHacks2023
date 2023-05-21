@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
-{% block head %} <title>Login</title> {% endblock %}
+{% block head %}
+    <title>Sign up</title>
+    <link rel="stylesheet" href="../static/css/styles.css"/>
+{% endblock %}
 
 {% block content %}
     <div class="container"
@@ -10,8 +13,8 @@
                  style="display: block; margin-left: auto; margin-right: auto;">
             <h3>Sign up</h3>
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your company name"
+                <label for="name">Username</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter a unique username"
                        required>
             </div>
             <div class="form-group">

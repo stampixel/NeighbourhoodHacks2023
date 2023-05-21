@@ -1,36 +1,39 @@
+{% extends "base.html" %}
 
-{% extends "base.html" %} {% block head %} <title>BizLink</title> {% endblock %}
+{% block head %}
+    <title>BizLink</title>
+    <link rel="stylesheet" href="../static/css/homepage.css">
+{% endblock %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../static/css/homepage.css">
-</head>
-<body>
-    <div class="nav">
-        <h2 >BizLink</h2>
-        <ul>
-            <li><a href="#">Home</a> </li>
-            <li><a href="#">About</a> </li>
-            <li><a href="#">Mobile Support</a></li>
-            <li><a href="#">Our mission</a></li>
-            <li><a href="#">Contact Us</a></li>
-        </ul>
-    </div>
+    <!--
+        <div class="nav">
+            <h2 >BizLink</h2>
+            <ul>
+                <li><a href="#">Home</a> </li>
+                <li><a href="#">About</a> </li>
+                <li><a href="#">Mobile Support</a></li>
+                <li><a href="#">Our mission</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+        !-->
     <main>
         <section>
             <div class="main-header">
                 <div class="main-header-div">
                     <h1><span style="color:#7153C6;">BizLink</span>, The Business Directory for the Digital Age</h1>
-                    <p>Looking for a way to connect with customers and grow your business online? Look no further than BizLink, the premier online directory for businesses of all sizes and industries. Whether you're a seasoned entrepreneur or just starting out, BizLink offers the tools and resources you need to succeed in the digital age.</p>
+                    <p>Looking for a way to connect with customers and grow your business online? Look no further than
+                        BizLink, the premier online directory for businesses of all sizes and industries. Whether you're
+                        a seasoned entrepreneur or just starting out, BizLink offers the tools and resources you need to
+                        succeed in the digital age.</p>
                     <div class="btn-group">
-                        <button class="btn">Login</button>
-                        <button class="btn" >register</button>
+                        <a href="/login">
+                            <button class="btn">Login</button>
+                        </a>
+                        <a href="/register">
+                            <button class="btn">Register</button>
+                        </a>
                     </div>
                 </div>
                 <div>
@@ -40,9 +43,14 @@
             <div class="main-header">
                 <div>
                     <h1>Find Businesses Near You <span>BizLink</span></h1>
-                    <p>Our easy-to-use search bar allows you to quickly find businesses and services in your area. Simply enter your location and the type of business you're looking for, and we'll show you a list of options that meet your criteria. You can also filter your results by category, distance, and other criteria to find exactly what you need.</p>
+                    <p>Our easy-to-use search bar allows you to quickly find businesses and services in your area.
+                        Simply enter your location and the type of business you're looking for, and we'll show you a
+                        list of options that meet your criteria. You can also filter your results by category, distance,
+                        and other criteria to find exactly what you need.</p>
                     <div class="btn-group">
-                        <button class="btn">Try it out</button>
+                        <a href="/map">
+                            <button class="btn">Try it out</button>
+                        </a>
                     </div>
                 </div>
                 <img src="../static/img/browser-window.png" alt="people in business">
@@ -51,40 +59,51 @@
                 <img src="../static/img/calendar.png" alt="people in business">
                 <div>
                     <h1>Create Your Own Business Listing <span>BizLink</span></h1>
-                    <p>As a business owner, you can create your own profile on BizLink and publish information about your business online. You can add photos, descriptions, and contact information to make it easy for customers to find and connect with you. You can also create posts and announcements to keep your customers up-to-date on the latest news and offerings from your business.</p>
-                    
+                    <p>As a business owner, you can create your own profile on BizLink and publish information about
+                        your business online. You can add photos, descriptions, and contact information to make it easy
+                        for customers to find and connect with you. You can also create posts and announcements to keep
+                        your customers up-to-date on the latest news and offerings from your business.</p>
+
                 </div>
             </div>
             <div class="main-header">
-                
+
                 <div>
                     <h1>Create your own custom link<span>BizLink</span></h1>
-                    <p>With BizLink, you'll get your own custom link that you can share with customers and use in your marketing materials. Your link will take customers directly to your business profile, making it easy for them to learn more about your business and connectwith you.</p>
-                    
+                    <p>With BizLink, you'll get your own custom link that you can share with customers and use in your
+                        marketing materials. Your link will take customers directly to your business profile, making it
+                        easy for them to learn more about your business and connectwith you.</p>
+
                 </div>
                 <img src="../static/img/tv.png" alt="people in business">
             </div>
             <div class="main-header">
-                <img src="../static/img/star.png"alt="people in business">
+                <img src="../static/img/star.png" alt="people in business">
                 <div>
                     <h1>Discover New Businesses and Services<span>BizLink</span></h1>
-                    <p>Looking for something new? Explore our directory of businesses and services to discover new opportunities and connect with businesses you may not have known about before. Our map feature shows you businesses near your location, making it easy to find new places to shop, dine, and do business.</p>
-                    
+                    <p>Looking for something new? Explore our directory of businesses and services to discover new
+                        opportunities and connect with businesses you may not have known about before. Our map feature
+                        shows you businesses near your location, making it easy to find new places to shop, dine, and do
+                        business.</p>
+
                 </div>
             </div>
             <div class="main-header">
-                
+
                 <div>
                     <h1>See what others are saying<span>BizLink</span></h1>
-                    <p>Curious about what others are saying about businesses on BizLink? Check out our reviews and testimonials section to see what real customers are saying about their experiences with businesses in your area. You can also leave your own review to help others make informed decisions about where to do business.</p>
-                    
+                    <p>Curious about what others are saying about businesses on BizLink? Check out our reviews and
+                        testimonials section to see what real customers are saying about their experiences with
+                        businesses in your area. You can also leave your own review to help others make informed
+                        decisions about where to do business.</p>
+
                 </div>
                 <img src="../static/img/balloon.png" alt="people in business">
             </div>
             <div class="main-header">
                 <div>
-                    <h1>Have questions?Let us know. We're always here to help and listen</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit distinctio quos iste nemo.</p>
+                    <h1>Have questions? Let us know. We're always here to help and listen</h1>
+                    <p>Unlock your business potential, link by link!</p>
 
                     <p>Email address</p>
                     <p>bizlink@info.org</p>
@@ -92,11 +111,9 @@
                     <p>Phone number</p>
                     <p>+(725)210-7264</p>
 
-                    <p>
-                        Address
-                    </p>
+                    <p>Address</p>
                     <p>2739 Maryland, Las vegas</p>
-                    
+
                 </div>
                 <div>
                     <form action="#" class="form">
@@ -110,20 +127,21 @@
                             <input type="text" id="Email">
                         </div>
                         <div class="input-classes">
-                            <label for="subject">subject</label>
+                            <label for="subject">Subject</label>
                             <input type="text" id="subject">
                         </div>
                         <div class="input-classes">
-                            <label for="message">message</label>
+                            <label for="message">Message</label>
                             <input type="text" id="message">
                         </div>
-                        
-                        <button class="btn">send</button>
+                        <br>
+                        <button class="btn">Send</button>
                     </form>
                 </div>
             </div>
         </section>
     </main>
+
     <footer>
         <h1 style="color:#7153C6;">BizLink</h1>
         <div class="footer-links">
@@ -146,7 +164,6 @@
             </ul>
         </div>
     </footer>
-</body>
-</html>
+
 
 {% endblock %}

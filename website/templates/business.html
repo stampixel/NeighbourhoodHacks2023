@@ -1,0 +1,52 @@
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user['business_name'] }}</title>
+    <link rel="stylesheet" href="../static/css/editor.css"/>
+{% endblock %}
+
+
+{% block content %}
+    <div class="banner"
+         style="background-image: url('{{ user["banner"] }}');">
+
+    </div>
+
+    <div class="profile">
+        <div class="profile-picture">
+            <!-- Profile picture goes here -->
+            <img src="{{ user['profile_picture'] }}"
+                 alt="pfp">
+        </div>
+        <div class="name">{{ user['business_name'] }}</div>
+    </div>
+    <div class="main">
+        <div class="left">
+
+            {% for post in posts %}
+                <div class="post">
+                    <a href="/delete/post/{{ post['_id'] }}">Delete</a>
+                    <img src="{{ post['image'] }}" alt="Post Image">
+                    <p>{{ post['description'] }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="right">
+            <div class="address">
+                <span><a href="/map">View Map</a></span>
+            </div>
+
+            <div class="socials">
+                <p>Social Handles</p>
+                {% for link in user['link_tree'] %}
+                    <a href="/delete/{{ loop.index }}">X</a> <p><a href="{{ link[0] }}">{{ link[1] }}</a></p>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

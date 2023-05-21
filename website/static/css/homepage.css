@@ -6,7 +6,7 @@ li {
     display: flex;
     padding: 2rem 5rem;
     color: black;
-    width: calc(100 vw- 10rem);
+    width: calc(100vw - 10rem);
     justify-content: space-between;
 }
 
