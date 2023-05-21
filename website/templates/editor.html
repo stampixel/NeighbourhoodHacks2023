@@ -1,67 +1,92 @@
-<section>
-    <div class="editor">
-      <div
-        style="
+{% extends "base.html" %}
+
+
+{% block head %}
+    <title>Editor</title>
+{% endblock %}
+
+
+{% block content %}
+    <section>
+        <div class="editor">
+            <div style="
           display: flex;
           flex-direction: row;
           padding-left: 10%;
           justify-content: space-between;
           background-color: brown;
-        "
-      >
-        <img
-          class="profile-pic"
-          src="../static/img/user-g29e70eb6b_1920.png"
-          alt="Profile Picture"
-        />
-        <div style="padding: 20px; margin-right: 30%">
-          <h1 style="font-size: 5pc"><strong>Hi User</strong></h1>
-        </div>
-      </div>
-      <br />
-      <div
-        style="
+        ">
+                <img
+                        class="profile-pic"
+                        src="../static/img/user-g29e70eb6b_1920.png"
+                        alt="Profile Picture"
+                />
+                <div style="padding: 20px; margin-right: 30%">
+                    <h1 style="font-size: 5pc"><strong>Hi User</strong></h1>
+                </div>
+            </div>
+            <br/>
+            <div style="
           display: flex;
           flex-direction: row;
-          /* justify-content: space-evenly; */
         "
-      >
-        <div
-          class="left-panel"
-          style="
+            >
+                <div
+                        class="left-panel"
+                        style="
             justify-content: safe;
             display: flex;
             flex: auto;
             justify-content: space-evenly;
-          "
-        >
-          <div class="upload-btn-wrapper">
-            <button class="btn">Upload Photo</button>
-            <input type="file" name="myPhotofile" />
-          </div>
-          <div class="upload-btn-wrapper">
-            <button class="btn">Upload Banner</button>
-            <input type="file" name="myBannerfile" />
-          </div>
-        </div>
-        <div class="right-panel" style="margin-right: 30px;">
-          <div
-            style="
+          ">
+
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        <div class="upload-btn-wrapper">
+                            <input class="btn" type="submit" name="save-pfp" value="Save Profile Picture">
+                            <input required type="file" id="pfp" name="pfp" accept="image/*" value="save-pfp">
+                        </div>
+                    </form>
+
+                    <form method="POST" action="" enctype="multipart/form-data">
+                        <div class="upload-btn-wrapper">
+                            <input class="btn" type="submit" name="save-banner" value="Save Banner">
+                            <input required type="file" id="banner" name="banner" accept="image/*" value="save-banner">
+                        </div>
+                    </form>
+
+                    <div class="right-panel" style="margin-right: 30px;">
+                        <form method='POST'>
+                            <div
+                                    style="
             width: 500px;
                justify-content: space-evenly;
-               display: flex;
-              ">
-            <textarea name="address" id="address" cols="10" rows="3">Enter Address </textarea>
-            <div style="margin-top: auto; margin-bottom: auto; margin-left: 20px">
-              <button class="btn" onclick="openGoogleMaps()">Locate</button>
+               display: flex;">
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input
+                                            type="text"
+                                            class="form-control"
+                                            id="address"
+                                            name="address"
+                                            placeholder="Enter address to be displayed on map"
+                                    />
+                                </div>
+
+
+                                <div style="margin-top: auto; margin-bottom: auto; margin-left: 20px">
+                                    <input type="submit" name="save-address" value="Save Address">
+                                </div>
+                            </div>
+                        </form>
+
+                        <br>
+                        <div>
+                            <p>Want to know what's new arrived??</p>
+                            <p>subscribe to our newsletter <a href="http://">here</a></p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <br>
-          <div>
-            <p>Want to know what's new arrived??</p>
-            <p>subscribe to our newsletter <a href="http://">here</a> </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
+
+{% endblock %}

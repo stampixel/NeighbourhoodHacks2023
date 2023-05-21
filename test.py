@@ -8,4 +8,9 @@ gmaps = googlemaps.Client(key=os.getenv('GOOGLE_API_KEY'))
 
 # Geocoding an address
 geocode_result = gmaps.geocode('1600 Amphitheatre Parkway, Mountain View, CA')
-print(geocode_result)
+print(geocode_result[0])
+
+for info in geocode_result[0]:
+    print(info)
+
+print(geocode_result[0]['geometry']['location']['lat'])

@@ -1,0 +1,26 @@
+
+{% block title %}Map{% endblock %}
+{% block head %}
+    <!--Our CSS-->
+    <link rel="stylesheet" href="../static/css/map.css">
+    <!--LeafletJS files-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+{% endblock %}
+
+{% block content %}
+    <div id="map"></div>
+
+    <script>
+        var map = L.map('map',{
+            center: [47.7599959, -122.1902953],
+            zoom: 15
+        }).locate({setView: true});
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'}).addTo(map);
+
+        {{markers|safe}}
+    </script>
+{% endblock %}
+
+{% block map %}"active"{% endblock %}

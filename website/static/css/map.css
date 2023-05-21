@@ -1,0 +1,15 @@
+#map{
+    display:block;
+    height:90vh;
+    z-index: 0;
+}
+
+.leaflet-popup-content {
+    width: 200px;
+    height: 300px;
+    /* overflow-y: scroll; */
+}
+
+.mapPost img{
+    width: 100%;
+}

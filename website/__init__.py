@@ -14,11 +14,11 @@ import datetime
 import io
 
 load_dotenv()
+app = Flask(__name__)
 
 
 # Setting up Flask app
 def create_app() -> object:
-    app = Flask(__name__)
     app.config['SECRET_KEY'] = 'o7'
     app.config["DEBUG"] = True
     app.config['S3_BUCKET'] = os.getenv('S3_BUCKET_NAME')
@@ -35,6 +35,10 @@ def create_app() -> object:
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'  # redirects if user != login
     login_manager.init_app(app)
+
+    @login_manager.user_loader
+    def load_user(id):  # currently wont be used, but good to have
+        return db.User.find_one({"_id": id})
 
     return app
 

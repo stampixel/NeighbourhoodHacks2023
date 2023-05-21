@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}about{% endblock %}
+
+{% block content %}
+
+
+<div class="aboutText">
+    <p>
+        Wildtrek is dedicated to encourage outdoor exploration.
+    </p>
+    <p>
+        While going outside, you can discover new plants and save them as you do!
+    </p>
+    <p>
+        Users 13 and above, can see other’s discoveries and add some friends too.
+    </p>
+    <img class="logo aboutLogo" src="https://wildtrekimages.theohal.repl.co/images/Wildtrek.png">
+    <p>
+        Ready to start your adventure?
+    </p>
+</div>
+<div>
+        <a class="login" href="{{url_for('auth.login')}}">
+        I'm Ready!
+    </a>
+</div>
+
+{% endblock %}
