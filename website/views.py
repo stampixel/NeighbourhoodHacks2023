@@ -1,15 +1,10 @@
-import os
 import uuid
 from datetime import datetime
-
 import boto3
 import pymongo
 from flask import Blueprint, render_template, redirect, request, flash, url_for, abort, session
 import random
-import string
-import requests
 from . import app, db
-from dotenv import load_dotenv
 import os
 import googlemaps
 
@@ -125,17 +120,9 @@ def editor():
                                           {'$push': {'link_tree': [url, title]}})
         except:
             pass
-        # try:
-        #     if request.form['save-link'] == "Save Link":
-        #         link = request.form['link']
-        #         users.find_one_and_update({'username': session['username']},
-        #                                   {'$set': {'link_url': link}})
-        # except:
-        #     pass
 
         try:
             if request.form['post-image'] == "Post Image":
-                print("sdfasdf")
                 image = request.files['post']
                 image.seek(0)
 
